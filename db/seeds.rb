@@ -5,3 +5,18 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+food_list = [
+  [ "banana", 100 ],
+  [ "popcorn", 50],
+  [ "pecan pie", 500],
+  [ "donuts", 250],
+  [ "kale", 15 ],
+  [ "sweet potato", 300],
+  [ "coffee", 30]
+
+]
+
+food_list.each do |food, calorie|
+  Food.create( name: food, calories: calorie)
+end
