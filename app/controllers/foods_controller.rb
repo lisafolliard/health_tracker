@@ -4,7 +4,7 @@ class FoodsController < ApplicationController
 
   # GET /foods
   def index
-    @foods = Food.order(sort_column + " " + sort_direction)
+    @foods = Food.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 3, :page => params[:page])
   end
 
   # GET /foods/1
