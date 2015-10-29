@@ -5,6 +5,7 @@ class FoodsController < ApplicationController
   # GET /foods
   def index
     @foods = Food.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 3, :page => params[:page])
+    @exercises = Exercise.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 3, :page => params[:page])
   end
 
   # GET /foods/1
@@ -47,15 +48,16 @@ class FoodsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def sort_column
       Food.column_names.include?(params[:sort]) ? params[:sort] : "name"
+      Exercise.column_names.include?(params[:sort]) ? params[:sort] : "name"
     end
 
     def sort_direction
       %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
-
+    # Use callbacks to share common setup or constraints between actions.
     def set_food
       @food = Food.find(params[:id])
     end
@@ -63,5 +65,6 @@ class FoodsController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def food_params
       params.require(:food).permit(:name, :calories)
+      params.require(:exercise).permit(:name, :calories_burned)
     end
 end
