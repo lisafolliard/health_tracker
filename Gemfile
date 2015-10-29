@@ -12,6 +12,7 @@ gem 'hirb'
 gem 'textacular', '~> 3.0'
 gem 'paperclip', '~> 4.1'
 gem 'will_paginate'
+gem 'devise'
 
 group :development do
   gem 'byebug'

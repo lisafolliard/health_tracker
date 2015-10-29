@@ -1,4 +1,5 @@
 class FoodsController < ApplicationController
+  before_filter :authenticate_user!, except: [:index, :show]
   before_action :set_food, only: [:show, :edit, :update, :destroy]
   helper_method :sort_column, :sort_direction
 
@@ -65,6 +66,6 @@ class FoodsController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def food_params
       params.require(:food).permit(:name, :calories)
-      params.require(:exercise).permit(:name, :calories_burned)
+      # params.require(:exercise).permit(:name, :calories_burned)
     end
 end
